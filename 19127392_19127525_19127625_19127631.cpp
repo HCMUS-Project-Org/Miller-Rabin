@@ -2,13 +2,23 @@
 
 using namespace std;
 
-long power_mod(int b, int e, int m)
+long power_mod(long b, long e, long m)
 {
-   // input: b (base), e (exponent), m (modulus)
-   // output: b^e mod m
-   long result = 0;
+  // input: b (base), e (exponent), m (modulus)
+  // output: b^e mod m
 
-   return result;
+  b %= m;
+  long result = 1;
+  while (e > 0) {
+    // Check odds
+    if (e & 1) {
+      result = result * b % m;
+    }
+    b = b * b % m;
+    e >>= 1;
+  }
+
+  return result;
 }
 
 bool miller_rabin(long n)
@@ -35,9 +45,9 @@ int main()
 
    bool ML = miller_rabin(n);
    if (ML == true)
-      cout << n << " is prime";
+     cout << n << " is prime";
    else
-      cout << n << " is not prime";
+     cout << n << " is not prime";
 
    return 0;
 }
