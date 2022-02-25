@@ -3,7 +3,7 @@
 
 using namespace std;
 
-long power_mod(long b, long e, long m)
+long power_mod(long long b, long e, long m)
 {
     // input: b (base), e (exponent), m (modulus)
     // output: b^e mod m
@@ -24,6 +24,7 @@ long power_mod(long b, long e, long m)
         {
             result = result * b % m;
         }
+        // b overflew before calc modular, so use long long for base.
         b = b * b % m;
         e >>= 1;
     }
@@ -63,7 +64,7 @@ bool miller_rabin(long n)
     // pick random a (1, n-1)
     long a = rand() % (n - 1) + 1;
     long b = power_mod(a, m, n);
-    
+
     if (b % n == 1)
         return true;
 
@@ -98,8 +99,8 @@ int main()
         else
             cout << n << " is not prime";
     }*/
-   
+
     cout << power_mod(20642, 649913, 1299827)<<endl;
-   
+
     return 0;
 }
