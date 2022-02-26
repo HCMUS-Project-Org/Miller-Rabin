@@ -77,7 +77,7 @@ int main()
    srand(time(NULL));
 
    long long n;
-   string input;
+
    cout << "-------------------------------------------------" << endl;
    cout << "--                 Miller Rabin                --" << endl;
    cout << "--         ---------------------------         --" << endl;
@@ -86,20 +86,23 @@ int main()
 
    while (true) {
       cout << "\n> Input n:";
+      
       // Flush input to prevent infinity loop
       cin >> n;
       cin.clear();
       fflush(stdin);
+      
       if (n < 0) {
-        cout << "Input number should be a positive one" << endl;
-        continue;
+         cout << "Input number should be a positive one" << endl;
+         continue;
       }
+
       bool ML = miller_rabin(n);
       if (ML == true)
         // if the result is different from the input -> overflow
-        cout << n << " is prime";
+         cout << n << " is prime";
       else
-        cout << n << " is not prime";
+         cout << n << " is not prime";
 
       cout << endl;
    };
